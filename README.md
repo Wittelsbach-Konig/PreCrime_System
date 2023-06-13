@@ -49,3 +49,33 @@ $ psql
 ```postgres
 # CREATE USER bob WITH PASSWORD 'P@$$w0rd';
 ```
+Теперь, назначьте своему пользователю все права сразу на вашу базу данных. В нашем примере это будет выглядеть так:
+```postgres
+# GRANT ALL PRIVILEGES ON DATABASE bobdb to bob;
+```
+Чтобы покинуть оболочку, наберите:
+```postgres
+# \q
+```
+И теперь, можно отключить от системы пользователя postgres:
+```shell
+$ exit
+```
+
+### Step 4
+Установите в VS Code PostgreSQL Management Tool:
+![image](https://github.com/Wittelsbach-Konig/PreCrime_System/assets/59288516/dad5e821-67b7-4ce2-95a9-0cd890fec932)
+Далее в описании расширения подключитесь к вашей БД.
+
+## Запуск веб-приложения
+
+Для запуска достаточно ввести в каталоге приложения следующее:
+```shell
+$ ./mvnw spring-boot:run
+```
+Предварительно разрешите запускаться скрипту:
+```shell
+$ chmod +x ./mvnw
+```
+
+
