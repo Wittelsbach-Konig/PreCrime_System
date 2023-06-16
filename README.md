@@ -1,6 +1,22 @@
 # PreCrime_System
 ITMO, МПИ, курсовая работа - PreCrime System
 
+## Java 
+Необходимая версия Java 17+ (jdk17+):
+```shell
+$ java --version
+openjdk 17.0.6 2023-01-17 LTS
+OpenJDK Runtime Environment (build 17.0.6+10-LTS)
+OpenJDK 64-Bit Server VM (build 17.0.6+10-LTS, mixed mode, sharing)
+```
+Необходимая версия maven:
+```shell
+$ mvn --version
+Apache Maven 3.6.3
+Maven home: /usr/share/maven
+Java version: 17.0.6, vendor: BellSoft, runtime: /usr/lib/jvm/bellsoft-java17-amd64
+```
+
 ## Установка POSTGRE:
 
 ### Step 1
@@ -70,6 +86,9 @@ $ exit
 Установите в VS Code PostgreSQL Management Tool:
 ![image](https://github.com/Wittelsbach-Konig/PreCrime_System/assets/59288516/dad5e821-67b7-4ce2-95a9-0cd890fec932)
 Далее в описании расширения подключитесь к вашей БД.
+
+### Step 5
+
 
 ## Запуск веб-приложения
 
