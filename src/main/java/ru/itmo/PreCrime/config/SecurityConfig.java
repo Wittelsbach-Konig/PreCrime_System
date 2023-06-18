@@ -20,6 +20,7 @@ public class SecurityConfig {
         http.csrf(AbstractHttpConfigurer::disable)
                 .authorizeHttpRequests((requests) -> requests
                         .requestMatchers( "/login", "/registration", "/error").permitAll()
+                        .requestMatchers("/cardfill").permitAll()
                         .anyRequest()
                         .authenticated()
                 )

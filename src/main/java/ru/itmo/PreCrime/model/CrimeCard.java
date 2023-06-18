@@ -6,7 +6,7 @@ import lombok.*;
 import java.time.LocalDateTime;
 
 @Entity
-@Table(name = "crime_cards")
+@Table(name = "crimecard")
 @Getter
 @Setter
 @Builder
@@ -18,7 +18,7 @@ public class CrimeCard {
     private Integer id;
 
     @Enumerated(EnumType.STRING)
-    private CrimeType type;
+    private CrimeType typecrime;
 
     private String victim_name;
     private String criminal_name;
