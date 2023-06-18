@@ -6,7 +6,7 @@
   </head>
   <body>
     <!-- поменять th:action -->
-    <form th:method="POST" th:action="@{/cardfill}" th:object="${crimecard}"></form>
+    <form th:method="POST" th:action="@{/cardfill}" th:object="${crimecard}">
     <label for="victim_name">Введите имя жертвы:</label>
     <input type="text" th:field="*{victim_name}" id="victim_name">
     <div style="color:red;" th:if="${#fields.hasErrors('victim_name')}" th:errors="*{victim_name}">VictimName error</div>
