@@ -49,7 +49,7 @@ public class UsersController {
         return "/auth/registration";
     }
 
-    @GetMapping("/auth/login")
+    @GetMapping("/login")
     public String getLoginPage() {
         return "/auth/login";
     }
