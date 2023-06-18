@@ -15,14 +15,13 @@ import java.time.LocalDateTime;
 public class CrimeCard {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Integer id;
-
-    @Enumerated(EnumType.STRING)
-    private CrimeType typecrime;
+    private Long id;
 
     private String victim_name;
     private String criminal_name;
     private String placeofcrime;
-    private LocalDateTime crimetime;
     private String weapon;
+    private LocalDateTime crimetime;
+    @Enumerated(EnumType.STRING)
+    private CrimeType typecrime;
 }
