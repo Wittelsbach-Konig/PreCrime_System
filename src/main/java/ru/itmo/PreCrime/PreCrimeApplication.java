@@ -41,8 +41,8 @@ public class PreCrimeApplication {
                     .login("technic")
                     .password(passwordEncoder.encode("technic"))
                     .role(Role.TECHNIC)
-                    .firstName("Антоша")
-                    .lastName("Пидорас")
+                    .firstName("Уолли")
+                    .lastName("Уоллес")
                     .build());
         }
         if(detectiveUserOptional.isEmpty()) {
