@@ -9,6 +9,8 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.SecurityFilterChain;
 
+import ru.itmo.PreCrime.model.Role;
+
 
 
 @Configuration
@@ -20,6 +22,7 @@ public class SecurityConfig {
         http.csrf(AbstractHttpConfigurer::disable)
                 .authorizeHttpRequests((requests) -> requests
                         .requestMatchers( "/login", "/registration", "/error").permitAll()
+                        .requestMatchers("/cardfill").hasAuthority(Role.DETECTIVE.toString())
                         .anyRequest()
                         .authenticated()
                 )
