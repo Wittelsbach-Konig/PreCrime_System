@@ -6,6 +6,9 @@
   </head>
   <body>
     <h2>Login</h2>
+    <div class="image-container">
+      <img class="logo" th:src="@{image/logo.png}" alt="Логотип">
+    </div>
     <form name="form_page" method="POST" action="/process_login">
       <label for="username">Введите логин:</label>
       <input type="text" name="username" id="username">

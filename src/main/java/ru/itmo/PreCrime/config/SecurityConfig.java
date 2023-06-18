@@ -17,7 +17,9 @@ public class SecurityConfig {
 
     public static final String[] ENDPOINTS_WHITELIST = {
         "/css/**",
+        "/image/**",
         "/js/**",
+        "/includes/**",
         "/registration",
         "/login",
         "/error",
