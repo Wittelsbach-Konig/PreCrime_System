@@ -1,27 +1,106 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<html style="font-size: 16px;" lang="en" xmlns:th="http://www.thymeleaf.org">
   <head>
-    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta charset="utf-8">
+    <meta name="keywords" content="Contact Us, Visit Us, Contact Us">
+    <meta name="description" content="">
     <title>Login</title>
+    <link rel="stylesheet" th:href="@{/css/nicepage.css}" media="screen">
+    <link rel="stylesheet" th:href="@{/css/login.css}" media="screen">
+    <script class="u-script" type="text/javascript" th:src="@{/js/jquery.js}" defer=""></script>
+    <link id="u-theme-google-font" rel="stylesheet" href="https://fonts.googleapis.com/css?family=Montserrat:100,100i,200,200i,300,300i,400,400i,500,500i,600,600i,700,700i,800,800i,900,900i|Open+Sans:300,300i,400,400i,500,500i,600,600i,700,700i,800,800i">
+    <meta name="theme-color" content="#80b4ff">
   </head>
-  <body>
-    <h2>Login</h2>
-    <div class="image-container">
-      <img class="logo" th:src="@{image/logo.png}" alt="Логотип">
-    </div>
-    <form name="form_page" method="POST" action="/process_login">
-      <label for="username">Введите логин:</label>
-      <input type="text" name="username" id="username">
-      <br/>
-      <label for="password">Введите пароль:</label>
-      <input type="password" name="password" id="password">
-      <br/>
-      <input type="submit" value="Login"/>
-  
-      <div th:if="${param.error}" style="color: red">
-          Неправильные имя или пароль
+  <body data-home-page="login.html" data-home-page-title="login" class="u-body u-xl-mode" data-lang="en">
+    <header class="u-clearfix u-header u-header" id="sec-bdaf">
+      <div class="u-clearfix u-sheet u-sheet-1">
+        <a href="https://nicepage.com" class="u-image u-logo u-image-1">
+          <img th:src="@{image/logo.png}" class="u-logo-image u-logo-image-1">
+        </a>
+        <nav class="u-menu u-menu-one-level u-offcanvas u-menu-1" data-responsive-from="MD">
+          <div class="menu-collapse" style="font-size: 1rem; letter-spacing: 0px; font-weight: 700; text-transform: uppercase;">
+            <a class="u-button-style u-custom-active-border-color u-custom-border u-custom-border-color u-custom-borders u-custom-hover-border-color u-custom-left-right-menu-spacing u-custom-padding-bottom u-custom-text-active-color u-custom-text-color u-custom-text-hover-color u-custom-top-bottom-menu-spacing u-nav-link u-text-active-palette-1-base u-text-hover-palette-2-base" href="#">
+              <svg class="u-svg-link" viewBox="0 0 24 24">
+                <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#menu-hamburger"></use>
+              </svg>
+              <svg class="u-svg-content" version="1.1" id="menu-hamburger" viewBox="0 0 16 16" x="0px" y="0px" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns="http://www.w3.org/2000/svg">
+                <g>
+                  <rect y="1" width="16" height="2"></rect>
+                  <rect y="7" width="16" height="2"></rect>
+                  <rect y="13" width="16" height="2"></rect>
+                </g>
+              </svg>
+            </a>
+          </div>
+          <div class="u-custom-menu u-nav-container">
+            <ul class="u-nav u-spacing-30 u-unstyled u-nav-1">
+              <li class="u-nav-item">
+                <a class="u-border-2 u-border-active-palette-1-base u-border-hover-palette-1-base u-border-no-left u-border-no-right u-border-no-top u-button-style u-nav-link u-text-active-palette-1-base u-text-grey-90 u-text-hover-grey-90" href="Главная.html" style="padding: 10px 0px;">Главная</a>
+              </li>
+              <li class="u-nav-item">
+                <a class="u-border-2 u-border-active-palette-1-base u-border-hover-palette-1-base u-border-no-left u-border-no-right u-border-no-top u-button-style u-nav-link u-text-active-palette-1-base u-text-grey-90 u-text-hover-grey-90" href="Кабинет.html" style="padding: 10px 0px;">Кабинет</a>
+              </li>
+            </ul>
+          </div>
+          <div class="u-custom-menu u-nav-container-collapse">
+            <div class="u-black u-container-style u-inner-container-layout u-opacity u-opacity-95 u-sidenav">
+              <div class="u-inner-container-layout u-sidenav-overflow">
+                <div class="u-menu-close"></div>
+                <ul class="u-align-center u-nav u-popupmenu-items u-unstyled u-nav-2">
+                  <li class="u-nav-item">
+                    <a class="u-button-style u-nav-link" href="Главная.html">Главная</a>
+                  </li>
+                  <li class="u-nav-item">
+                    <a class="u-button-style u-nav-link" href="Кабинет.html">Кабинет</a>
+                  </li>
+                </ul>
+              </div>
+            </div>
+            <div class="u-black u-menu-overlay u-opacity u-opacity-70"></div>
+          </div>
+        </nav>
       </div>
-  </form>
-  <a href="/registration">Register new user</a>    
+    </header>
+    <section class="u-clearfix u-image u-shading u-section-1" id="carousel_72a4" data-image-width="1680" data-image-height="1104">
+      <div class="u-clearfix u-sheet u-sheet-1">
+        <div class="u-clearfix u-expanded-width u-gutter-0 u-layout-wrap u-layout-wrap-1">
+          <div class="u-layout">
+            <div class="u-layout-row">
+              <div class="u-align-left u-container-style u-layout-cell u-left-cell u-size-27 u-layout-cell-1" data-animation-name="customAnimationIn" data-animation-duration="1500" data-animation-delay="500">
+                <div class="u-container-layout u-container-layout-1"></div>
+              </div>
+              <div class="u-align-center u-container-style u-layout-cell u-right-cell u-size-33 u-layout-cell-2" data-animation-name="customAnimationIn" data-animation-duration="1500" data-animation-delay="500">
+                <div class="u-container-layout u-container-layout-2">
+                  <h2 class="u-text u-text-1">Sign In</h2>
+                  <div class="u-form u-grey-25 u-login-control u-form-1">
+                    <form action="/process_login" class="u-clearfix u-form-spacing-10 u-form-vertical u-inner-form" source="custom" name="form" style="padding: 10px;" method="post">
+                      <div class="u-form-group u-form-name">
+                        <label for="username-a30d" class="u-label">Username *</label>
+                        <input type="text" placeholder="Enter your Username" id="username-a30d" name="username" class="u-input u-input-rectangle u-none u-input-1" required="">
+                      </div>
+                      <div class="u-form-group u-form-password">
+                        <label for="password-a30d" class="u-label">Password *</label>
+                        <input type="password" placeholder="Enter your Password" id="password-a30d" name="password" class="u-input u-input-rectangle u-none u-input-2" required="">
+                      </div>
+                      <div class="u-align-left u-form-group u-form-submit">
+                        <!-- <a href="#" class="u-btn u-btn-submit u-button-style u-btn-1">Login</a> -->
+                        <input type="submit" class="u-btn u-btn-submit u-button-style u-btn-1" value="Login">
+                        <a th:href="@{/registration}" class="u-btn u-btn-submit u-button-style u-btn-1">Register new user</a>
+                      </div>
+                    </form>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+    <footer class="u-align-center u-clearfix u-footer u-grey-80 u-footer" id="sec-1fad">
+      <div class="u-clearfix u-sheet u-sheet-1">
+        <p class="u-small-text u-text u-text-variant u-text-1"> © 2023 Copyright PreCrime</p>
+      </div>
+    </footer>
   </body>
 </html>

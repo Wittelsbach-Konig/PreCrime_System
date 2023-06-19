@@ -23,7 +23,6 @@ public class CabinetController {
             GrantedAuthority authority = authorityOptional.get();
             if (authority.getAuthority().equals(Role.DETECTIVE.toString())) {
                 return "police_office";
-                // return "cardfill";
             } else if (authority.getAuthority().equals(Role.TECHNIC.toString())) {
                 return "temple";
             }

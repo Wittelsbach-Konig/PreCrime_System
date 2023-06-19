@@ -1,9 +1,14 @@
 <!DOCTYPE html>
-<html lang="en">
-    Тут детектив чилит.
-    <a href="/cardfill">Fill Crime card</a>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+  <head>
+    <link rel="stylesheet" th:href="@{/css/login.css}" media="screen">
+    <link rel="stylesheet" th:href="@{/css/nicepage.css}" media="screen">
+  </head>
     <body>
         <h2>Video Player</h2>
+        Тут детектив чилит.
+        <a th:href="@{/cardfill}" class="u-btn u-btn-submit u-button-style u-btn-1">Fill Crime card</a>
+        <a th:href="@{/cardfill}" class="u-btn u-btn-submit u-button-style u-btn-1">Fill Crime card</a>
         <video
         width="480"
         controls
