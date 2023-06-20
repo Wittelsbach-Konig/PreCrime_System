@@ -8,5 +8,6 @@ import ru.itmo.PreCrime.model.CrimeCard;
 @Repository
 public interface CardsRepository extends JpaRepository<CrimeCard, Long> {
     
+    CrimeCard findTopByOrderByIdDesc();
 }
 
