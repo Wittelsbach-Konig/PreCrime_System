@@ -11,5 +11,6 @@ import java.util.List;
 public interface CardsRepository extends JpaRepository<CrimeCard, Long> {
     List <CrimeCard> findAllByOrderByIdDesc();
 
+    CrimeCard findTopByOrderByIdDesc();
 }
 

@@ -24,4 +24,6 @@ public class CrimeCard {
     private LocalDateTime crimetime;
     @Enumerated(EnumType.STRING)
     private CrimeType typecrime;
+    @Builder.Default
+    private Boolean approve = false;
 }
