@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Card List</title>
+</head>
+<body>
+    <h1>Card List</h1>
+    <a href="/cabinet">Return</a>
+    <table>
+        <thead>
+            <tr>
+                <th>Место преступления</th>
+                <th>Орудие преступления</th>
+                <th>Время преступления</th>
+                <th>Тип убийства</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr th:each="card : ${cards}">
+                <td th:text="${card.placeofcrime}"></td>
+                <td th:text="${card.weapon}"></td>
+                <td th:text="${{card.crimetime}}"></td>
+                <td th:text="${card.typecrime}"></td>
+                <td><a th:href="@{/cards/{id}(id=${card.id})}">View</a></td>
+            </tr>
+        </tbody>
+    </table>
+
+</body>
+</html>
