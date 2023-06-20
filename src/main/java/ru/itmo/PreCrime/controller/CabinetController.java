@@ -2,7 +2,6 @@ package ru.itmo.PreCrime.controller;
 
 import java.util.Optional;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.stereotype.Controller;
@@ -23,7 +22,6 @@ public class CabinetController {
             GrantedAuthority authority = authorityOptional.get();
             if (authority.getAuthority().equals(Role.DETECTIVE.toString())) {
                 return "police_office";
-                // return "cardfill";
             } else if (authority.getAuthority().equals(Role.TECHNIC.toString())) {
                 return "temple";
             }

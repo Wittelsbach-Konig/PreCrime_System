@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+  <script>
+    function generateRandomName(p) {
+        if(p==1){
+        $.get("/randomCriminalName", function (data) {
+            $("#randomCriminalName").text(data);
+        });
+        }
+        if(p==2){
+        $.get("/randomVictimName", function (data) {
+            $("#randomVictimName").text(data);
+        });  
+        }
+    }
+  </script>
+
+  <script>
+    function generateRandomDateTime() {
+            $.get("/randomDateTime", function (data) {
+                $("#randomDateTime").text(data);
+            });
+        }
+  </script>
+</head>  
+    <a href="/cabinet">Return</a>
+    <a href="/cardfill">Fill Crime card</a>
+    <body>
+        <h2>Video Player</h2>
+        <video
+        width="480"
+        controls
+        poster="https://archive.org/download/WebmVp8Vorbis/webmvp8.gif"
+      >
+        <source
+          src="https://archive.org/download/WebmVp8Vorbis/webmvp8_512kb.mp4"
+          type="video/mp4"
+        />
+        <source
+          src="https://archive.org/download/WebmVp8Vorbis/webmvp8.ogv"
+          type="video/ogg"
+        />
+        <source
+          src="https://archive.org/download/WebmVp8Vorbis/webmvp8.webm"
+          type="video/webm"
+        />
+        Your browser doesn't support HTML5 video tag.
+      </video>
+      <h1 id="randomCriminalName"></h1>
+      <h1 id="randomVictimName"></h1>
+      <button onclick="generateRandomName(1)">Generate Random Criminal Name</button>
+      <button onclick="generateRandomName(2)">Generate Random Victim Name</button>
+      <h1 id="randomDateTime"></h1>
+      <button onclick="generateRandomDateTime()">Generate Random Date and Time</button>
+    </body>
+</html>
