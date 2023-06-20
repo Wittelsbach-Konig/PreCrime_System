@@ -7,8 +7,11 @@ import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import jakarta.validation.Valid;
+import org.springframework.ui.Model;
+import java.util.List;
 
 import ru.itmo.PreCrime.model.CrimeCard;
 import ru.itmo.PreCrime.model.User;
@@ -39,7 +42,7 @@ public class CardController {
     }
 
     @GetMapping("/cardfill")
-    public String getCardFillPage(@ModelAttribute("crimecard") CrimeCard card) {
+    public String getCardFillPage(@ModelAttribute("crimecard") CrimeCard card, @ModelAttribute("user") User user) {
         return "cardfill";
     }
 
@@ -48,7 +51,7 @@ public class CardController {
         if (bindingResult.hasErrors()) {
             return "cardfill";
         }
-
+        System.out.println(user.getFirstName());
         cardsService.saveCard(card);
         CrimeCard lastCard = cardsRepository.findTopByOrderByIdDesc();
         String message = "Андрюха кажется будет труп, возможно криминал, по коням:\n" +
@@ -65,4 +68,19 @@ public class CardController {
     private void addAtributes(Model model, @AuthenticationPrincipal UserDetailsImpl userDetails) {
         model.addAttribute("user", userDetails.getUser());
     }
+
+    @GetMapping("/cardslist")
+    public String getCards(Model model){
+        List <CrimeCard> cards = cardsRepository.findAllByOrderByIdDesc();
+        model.addAttribute("cards", cards);
+        return "cardslist";
+    }
+
+    @GetMapping("/cards/{id}")
+    public String getCard(@PathVariable Long id, Model model) {
+        CrimeCard card = cardsRepository.findById(id).orElse(null);
+        model.addAttribute("card", card);
+        return "cardview";
+    }
+
 }

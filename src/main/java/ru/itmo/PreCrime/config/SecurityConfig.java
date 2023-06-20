@@ -1,5 +1,7 @@
 package ru.itmo.PreCrime.config;
 
+// import javax.management.relation.Role;
+
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
@@ -9,7 +11,7 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.SecurityFilterChain;
 
-
+import ru.itmo.PreCrime.model.Role;
 
 @Configuration
 @EnableWebSecurity
@@ -24,6 +26,10 @@ public class SecurityConfig {
         "/login",
         "/error",
     };
+    public static final String [] DETECTIVE_WHITELIST = {
+        "/investigation",
+        "/cardfill"
+    };
     public static final String LOGIN_URL = "/login";
     public static final String LOGIN_PROCESSING_URL = "/process_login";
     public static final String DEFAULT_SUCCESS_URL = "/cabinet";
@@ -35,6 +41,7 @@ public class SecurityConfig {
         http.csrf(AbstractHttpConfigurer::disable)
                 .authorizeHttpRequests((requests) -> requests
                         .requestMatchers(ENDPOINTS_WHITELIST).permitAll()
+                        .requestMatchers(DETECTIVE_WHITELIST).hasAuthority(Role.DETECTIVE.toString())
                         .anyRequest()
                         .authenticated()
                 )

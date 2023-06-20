@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Card Details</title>
+</head>
+<body>
+    <h1>Card Details</h1>
+
+    <p>Жертва: <span th:text="${card.victim_name}"></span></p>
+    <p>Преступник: <span th:text="${card.criminal_name}"></span></p>
+    <p>Место преступления: <span th:text="${card.placeofcrime}"></span></p>
+    <p>Орудие преступления: <span th:text="${card.weapon}"></span></p>
+    <p>Время преступления: <span th:text="${{card.crimetime}}"></span></p>
+    <p>Тип преступления: <span th:text="${card.typecrime}"></span></p>
+
+    <a href="/cardslist">Back to List</a>
+</body>
+</html>
