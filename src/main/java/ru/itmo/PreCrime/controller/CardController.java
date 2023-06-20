@@ -14,6 +14,7 @@ import java.util.List;
 import ru.itmo.PreCrime.model.CrimeCard;
 import ru.itmo.PreCrime.repository.CardsRepository;
 import ru.itmo.PreCrime.service.FillingCardService;
+import ru.itmo.PreCrime.model.User;
 
 @Controller
 public class CardController {
@@ -28,16 +29,16 @@ public class CardController {
     }
 
     @GetMapping("/cardfill")
-    public String getCardFillPage(@ModelAttribute("crimecard") CrimeCard card) {
+    public String getCardFillPage(@ModelAttribute("crimecard") CrimeCard card, @ModelAttribute("user") User user) {
         return "cardfill";
     }
 
     @PostMapping("/cardfill")
-    public String perfectFilling(@Valid @ModelAttribute("crimecard") CrimeCard card, BindingResult bindingResult) {
+    public String perfectFilling(@Valid @ModelAttribute("crimecard") CrimeCard card, @ModelAttribute("user") User user,BindingResult bindingResult) {
         if (bindingResult.hasErrors()) {
             return "cardfill";
         }
-
+        System.out.println(user.getFirstName());
         cardsService.saveCard(card);
         return "police_office";
     }
