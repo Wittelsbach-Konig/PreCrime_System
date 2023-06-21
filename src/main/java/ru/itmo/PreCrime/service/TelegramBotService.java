@@ -25,6 +25,8 @@ public class TelegramBotService extends TelegramLongPollingBot{
         "You can execute commands from the main menu on the left or by typing a command:\n\n" +
         "Type /start to see a welcome message\n\n" +
         "Type /help to see this message again";
+    
+    static final String APPROVE_TEXT = "Уведомление об аресте подтверждено!";
 
     public TelegramBotService(BotConfig config, CardsRepository cardsRepository) {
         this.config = config;
@@ -42,6 +44,7 @@ public class TelegramBotService extends TelegramLongPollingBot{
                     try {
                         Long cardId = Long.parseLong(parts[1]);
                         approveCard(cardId);
+                        prepareAndSendMessage(chatId, APPROVE_TEXT);
                     }
                     catch (NumberFormatException e) {
                         // Обработка некорректного идентификатора карточки

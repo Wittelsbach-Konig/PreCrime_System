@@ -9,9 +9,13 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.ResponseBody;
+
 import jakarta.validation.Valid;
 import org.springframework.ui.Model;
 import java.util.List;
+
 
 import ru.itmo.PreCrime.model.CrimeCard;
 import ru.itmo.PreCrime.model.User;
@@ -41,27 +45,35 @@ public class CardController {
         this.usersRepository = usersRepository;
     }
 
-    @GetMapping("/cardfill")
-    public String getCardFillPage(@ModelAttribute("crimecard") CrimeCard card, @ModelAttribute("user") User user) {
-        return "cardfill";
-    }
+    // @GetMapping("/cardfill")
+    // public String getCardFillPage(@ModelAttribute("crimecard") CrimeCard card, @ModelAttribute("user") User user) {
+    //     return "cardfill";
+    // }
+
+    // @PostMapping("/cardfill")
+    // public String perfectFilling(@Valid @ModelAttribute("crimecard") CrimeCard card, BindingResult bindingResult, @ModelAttribute("user") @Valid User user) {
+    //     if (bindingResult.hasErrors()) {
+    //         return "cardfill";
+    //     }
+    //     System.out.println(user.getFirstName());
+    //     cardsService.saveCard(card);
+    //     CrimeCard lastCard = cardsRepository.findTopByOrderByIdDesc();
+    //     String message = "Андрюха кажется будет труп, возможно криминал, по коням:\n" +
+    //                      "Id: " + lastCard.getId() + "\n" +
+    //                      "Убийца: " + lastCard.getCriminal_name() + "\n" +
+    //                      "Жертва: " + lastCard.getVictim_name() + "\n" +
+    //                      "Место убийства: " + lastCard.getPlaceofcrime() + "\n";
+    //     int chatId = user.getTelegramId(); // 433915408
+    //     telegramBot.sendMessage(chatId, message);
+                        
+    //     return "redirect:/cabinet";
+    // }
 
     @PostMapping("/cardfill")
-    public String perfectFilling(@Valid @ModelAttribute("crimecard") CrimeCard card, BindingResult bindingResult, @ModelAttribute("user") @Valid User user) {
-        if (bindingResult.hasErrors()) {
-            return "cardfill";
-        }
-        System.out.println(user.getFirstName());
-        cardsService.saveCard(card);
-        CrimeCard lastCard = cardsRepository.findTopByOrderByIdDesc();
-        String message = "Андрюха кажется будет труп, возможно криминал, по коням:\n" +
-                         "Убийца: " + lastCard.getCriminal_name() + "\n" +
-                         "Жертва: " + lastCard.getVictim_name() + "\n" +
-                         "Место убийства: " + lastCard.getPlaceofcrime() + "\n";
-        int chatId = user.getTelegramId(); // 433915408
-        telegramBot.sendMessage(chatId, message);
-                        
-        return "redirect:/cabinet";
+    @ResponseBody
+    public CrimeCard createCard(@RequestBody CrimeCard card) {
+        // Сохранение карточки в базе данных
+        return cardsRepository.save(card);
     }
 
     @ModelAttribute
