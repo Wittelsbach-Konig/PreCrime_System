@@ -11,7 +11,7 @@
             <!-- Проверяем значение поля approve перед отображением ссылки на видео -->
             <a th:if="${not vision.accepted}" th:href="@{${vision.videoUrl}}" th:text="${vision.videoUrl}"></a>
             <form th:action="@{/visions/{id}/accept(id=${vision.id})}" method="post" style="display: inline;">
-                <input type="submit" value="Disapprove">
+                <input type="submit" value="Accept">
             </form>
         </li>
     </ul>
