@@ -52,7 +52,7 @@ h1, h2, h3, h4, h5, h6 {
     margin-bottom: 1%;
 }
 
-label{
+label, span{
     display: inline-block;
     font-size: 16px;
     color: #ffffff;
@@ -282,11 +282,12 @@ aside {
 
 .but-logout{
     display: block;
-    width: 90%;
+    width: 30%;
     height: 7%;
     border-radius: 5px;
-    padding: 1.5%;
-    margin-left: 5%;
+    padding: 0.5%;
+    margin-left: 35%;
+    margin-top: 5%;
     background: #ffffff;
     color: #000000;
     transition: transform 0.3s ease;
@@ -340,4 +341,20 @@ aside {
     transform: translateY(2px);
     color:#ffffff;
     border: 3px solid #FFFFFF;
+}
+
+.table {
+    display: table;
+    width: 100%;
+    border-collapse: collapse;
+}
+
+.row {
+    display: table-row;
+}
+
+.cell {
+    display: table-cell;
+    padding: 10px;
+    border: 1px solid #000;
 }

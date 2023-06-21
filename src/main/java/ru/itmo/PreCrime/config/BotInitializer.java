@@ -10,7 +10,7 @@ import org.telegram.telegrambots.updatesreceivers.DefaultBotSession;
 
 import ru.itmo.PreCrime.service.TelegramBotService;
 
-@Component
+/*@Component
 public class BotInitializer {
 
     @Autowired
@@ -28,4 +28,4 @@ public class BotInitializer {
         }
     }
     
-}
+}*/
