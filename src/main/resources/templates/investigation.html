@@ -16,7 +16,46 @@
         }
     }
   </script>
+  <script>
+    $(document).ready(function() {
+        $("#create-card-form").submit(function(event) {
+            event.preventDefault();
+            
+            var card = {
+                victim_name: $("#victim_name").val(),
+                criminal_name: $("#criminal_name").val(),
+                placeofcrime: $("#placeofcrime").val(),
+                weapon: $("#weapon").val(),
+                crimetime: $("#crimetime").val(),
+                typecrime: $("#typecrime").val(),
+            };
 
+            $.ajax({
+                url: "/cardfill",
+                method: "POST",
+                contentType: "application/json",
+                data: JSON.stringify(card),
+                success: function(data) {
+                    // Обработка успешного сохранения карточки
+                    console.log("Card created successfully");
+                    console.log(data);
+                    // Очистка формы
+                    $("#victim_name").val("");
+                    $("#criminal_name").val("");
+                    $("#placeofcrime").val("");
+                    $("#weapon").val("");
+                    $("#crimetime").val("");
+                    $("#typecrime").val("");
+                },
+                error: function(xhr, textStatus, errorThrown) {
+                    // Обработка ошибки сохранения карточки
+                    console.error("Error creating card");
+                    console.log(xhr.responseText);
+                }
+            });
+        });
+    });
+  </script>
   <script>
     function generateRandomDateTime() {
             $.get("/randomDateTime", function (data) {
@@ -26,24 +65,23 @@
   </script>
 </head>  
     <a href="/cabinet">Return</a>
-    <a href="/cardfill">Fill Crime card</a>
+    <!-- <a href="/cardfill">Fill Crime card</a> -->
     <body>
         <h2>Video Player</h2>
         <video
         width="480"
         controls
-        poster="https://archive.org/download/WebmVp8Vorbis/webmvp8.gif"
       >
-        <source
+        <!-- <source
           src="https://archive.org/download/WebmVp8Vorbis/webmvp8_512kb.mp4"
           type="video/mp4"
         />
         <source
           src="https://archive.org/download/WebmVp8Vorbis/webmvp8.ogv"
           type="video/ogg"
-        />
+        /> -->
         <source
-          src="https://archive.org/download/WebmVp8Vorbis/webmvp8.webm"
+          src="https://archive.org/details/LeeHarveyOswaldFootage"
           type="video/webm"
         />
         Your browser doesn't support HTML5 video tag.
@@ -54,5 +92,33 @@
       <button onclick="generateRandomName(2)">Generate Random Victim Name</button>
       <h1 id="randomDateTime"></h1>
       <button onclick="generateRandomDateTime()">Generate Random Date and Time</button>
+      <div class="u-section-1 u-align-center">
+        <form id="create-card-form" th:object="${crimecard}">
+          <label for="victim_name">Введите имя жертвы:</label>
+          <input type="text" name="victim_name" id="victim_name">
+          <br/>
+          <label for="criminal_name">Введите имя преступника:</label>
+          <input type="text" name="criminal_name" id="criminal_name">
+          <br/>
+          <label for="placeofcrime">Введите место преступления:</label>
+          <input type="text" name="placeofcrime" id="placeofcrime">
+          <br/>
+          <label for="weapon">Введите используемое оружие:</label>
+          <input type="text" name="weapon" id="weapon">
+          <br/>
+          <label for="crimetime">Введите время преступления:</label>
+          <input type="datetime-local" name="crimetime" id="crimetime">
+          <br/>
+          <label for="typecrime">Выберите тип преступления:</label>
+          <select name="typecrime" id="typecrime">
+              <option th:each="typecrime : ${T(ru.itmo.PreCrime.model.CrimeType).values()}"
+                      th:text="${typecrime.displayText}"
+                      th:value="${typecrime}">
+              </option>
+          </select>
+          <input id="submit" type="submit" value="Submit"/>
+        </form>
+      </div>
+
     </body>
 </html>
