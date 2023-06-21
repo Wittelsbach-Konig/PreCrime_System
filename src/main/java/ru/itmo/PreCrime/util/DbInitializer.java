@@ -5,23 +5,30 @@ import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.context.event.ApplicationStartedEvent;
 import org.springframework.context.event.EventListener;
+import org.springframework.data.domain.Example;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Component;
 
 import ru.itmo.PreCrime.model.Role;
 import ru.itmo.PreCrime.model.User;
+import ru.itmo.PreCrime.model.Vision;
 import ru.itmo.PreCrime.repository.UsersRepository;
+import ru.itmo.PreCrime.repository.VisionsRepository;
 
 @Component
 public class DbInitializer {
 
     private final UsersRepository userRepository;
     private final PasswordEncoder passwordEncoder;
+    private final VisionsRepository visionsRepository;
 
     @Autowired
-    public DbInitializer(UsersRepository userRepository, PasswordEncoder passwordEncoder) {
+    public DbInitializer(UsersRepository userRepository,
+                         PasswordEncoder passwordEncoder,
+                         VisionsRepository visionsRepository) {
         this.userRepository = userRepository;
         this.passwordEncoder = passwordEncoder;
+        this.visionsRepository = visionsRepository;
     }
 
     @EventListener(ApplicationStartedEvent.class)
@@ -67,6 +74,33 @@ public class DbInitializer {
                     .firstName("Владимир")
                     .lastName("Путин")
                     .build());
+        }
+    }
+
+    @EventListener(ApplicationStartedEvent.class)
+    public void addVisions() {
+        Vision vision1 = Vision.builder()
+        .videoUrl("https://www.youtube.com/watch?v=etZa36v63rc")
+        .accepted(false)
+        .build();
+
+        Vision vision2 = Vision.builder()
+        .videoUrl("https://www.youtube.com/watch?v=TR8moq11FnY&t=9s")
+        .accepted(false)
+        .build();
+
+        Optional<Vision> vision1Optional = visionsRepository.findOne(
+                Example.of(vision1)
+        );
+        Optional<Vision> vision2Optional = visionsRepository.findOne(
+                Example.of(vision2)
+        );
+
+        if (vision1Optional.isEmpty()) {
+            visionsRepository.save(vision1);
+        }
+        if (vision2Optional.isEmpty()) {
+            visionsRepository.save(vision2);
         }
     }
 

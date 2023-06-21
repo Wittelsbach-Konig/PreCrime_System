@@ -71,9 +71,18 @@ public class CardController {
 
     @PostMapping("/cardfill")
     @ResponseBody
-    public CrimeCard createCard(@RequestBody CrimeCard card) {
+    public CrimeCard createCard(@RequestBody CrimeCard card, @ModelAttribute("user") @Valid User user) {
         // Сохранение карточки в базе данных
-        return cardsRepository.save(card);
+        CrimeCard result = cardsRepository.save(card);
+        CrimeCard lastCard = cardsRepository.findTopByOrderByIdDesc();
+        String message = "Андрюха кажется будет труп, возможно криминал, по коням:\n" +
+                    "Id: " + lastCard.getId() + "\n" +
+                    "Убийца: " + lastCard.getCriminal_name() + "\n" +
+                    "Жертва: " + lastCard.getVictim_name() + "\n" +
+                    "Место убийства: " + lastCard.getPlaceofcrime() + "\n";
+        int chatId = user.getTelegramId(); // 433915408
+        telegramBot.sendMessage(chatId, message);
+        return result;
     }
 
     @ModelAttribute

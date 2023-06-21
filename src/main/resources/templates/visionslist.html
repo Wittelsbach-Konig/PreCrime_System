@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Videos Page</title>
+</head>
+<body>
+    <h1>Videos</h1>
+    <ul>
+        <!-- Используем Thymeleaf для отображения ссылок на видео -->
+        <li th:each="vision : ${visions}">
+            <!-- Проверяем значение поля approve перед отображением ссылки на видео -->
+            <a th:if="${not vision.accepted}" th:href="@{${vision.videoUrl}}" th:text="${vision.videoUrl}"></a>
+            <form th:action="@{/visions/{id}/accept(id=${vision.id})}" method="post" style="display: inline;">
+                <input type="submit" value="Disapprove">
+            </form>
+        </li>
+    </ul>
+</body>
+</html>
