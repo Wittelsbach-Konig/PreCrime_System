@@ -26,5 +26,5 @@ public class Vision {
 
     private String videoUrl;
     @Builder.Default
-    private boolean accepted = false;
+    private boolean accepted = false; //поле техника что он просмотрел
 }

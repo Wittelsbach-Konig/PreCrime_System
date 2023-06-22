@@ -2,18 +2,62 @@
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
     <title>Videos Page</title>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    
+
 </head>
 <body>
     <h1>Videos</h1>
-    <ul>
-        <!-- Используем Thymeleaf для отображения ссылок на видео -->
-        <li th:each="vision : ${visions}">
-            <!-- Проверяем значение поля approve перед отображением ссылки на видео -->
-            <a th:if="${not vision.accepted}" th:href="@{${vision.videoUrl}}" th:text="${vision.videoUrl}"></a>
-            <form th:action="@{/visions/{id}/accept(id=${vision.id})}" method="post" style="display: inline;">
-                <input type="submit" value="Disapprove">
-            </form>
-        </li>
-    </ul>
+        <table>
+            <thead>
+                <tr>
+                    <th>Id</th>
+                    <th>visionUrl</th>
+                    <th>isAccepted</th>
+                    <th></th>
+                    <th></th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr th:each="vision : ${visions}">
+                    <td th:text="${vision.id}"></td>
+                    <td><a th:href="@{${vision.videoUrl}}" th:text="${vision.videoUrl}"></a></td>
+                    <td th:text="${vision.accepted}"></td>
+                    <td>
+                        <form th:if="${user.Role == TECHNIC}" th:action="@{/visions/{id}/accept(id=${vision.id})}" th:method="post" style="display: inline;">
+                            <input type="submit" value="Approve">
+                        </form>
+                    </td>
+                    <td>
+                        <button class="delete-button" th:data-vision-id="${vision.id}" type="button" th:if="${user.Role == TECHNIC}">Delete Echo</button>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+
+
+        
+    <script>
+        $(document).ready(function() {
+            $('.delete-button').click(function() {
+                var visionId = $(this).data('vision-id');
+                deleteVision(visionId);
+            });
+        });
+
+        function deleteVision(visionId) {
+            $.ajax({
+                url: '/visions/' + visionId,
+                type: 'DELETE',
+                success: function() {
+                    // обновление страницы
+                    location.reload();
+                },
+                error: function() {
+                    console.error('Failed to delete video');
+                }
+            });
+        }
+    </script>
 </body>
 </html>
