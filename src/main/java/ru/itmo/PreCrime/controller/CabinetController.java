@@ -24,6 +24,10 @@ public class CabinetController {
                 return "police_office";
             } else if (authority.getAuthority().equals(Role.TECHNIC.toString())) {
                 return "temple";
+            } else if (authority.getAuthority().equals(Role.AUDITOR.toString())) {
+                return "auditor_room";
+            } else if (authority.getAuthority().equals(Role.REACTIONGROUP.toString())) {
+                return "gym";
             }
         }
         return "error";

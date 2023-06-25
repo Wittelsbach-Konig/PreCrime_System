@@ -88,7 +88,7 @@
     <body>
     <div class="widget_prof">
       <h3 class="widget-title">Profile</h3>
-      <a href="/login" class="but-logout">Logout</a>
+      <a href="/logout" class="but-logout">Logout</a>
     </div>
     <div class="widget">
       <div class="grid-container">
@@ -114,144 +114,85 @@
           <h5 id="randomDateTime"></h5>
         </div>
         <div class="grid-item">
-          <a th:href="@{/visionslist}" th:text="Список видений" class="but-grid"></a>
+          <a th:href="@{/visionslist}" class="but-grid"></a>
         </div>
         <div class="grid-item"> </div>
 
 
       </div>
-      <button onclick="openForm()" class = "but">Open card of precrime</button>
-      <a href="/cabinet" class = "but-log">Return</a>
-    </div>
-
-
-
-
-
-    <div id="myModal" class="modal">
-      <div class="modal-content">
-        <span class="close" onclick="closeForm()">&times;</span>
-        <h2>Card of crime</h2>
-        <form id="create-card-form" th:object="${crimecard}">
-          <div class="u-section-1 u-align-center">
-
-
-
-                <div class="grid-container-2">
-                  <div class="grid-item-2">
-                     <label for="victim_name">Введите имя жертвы:</label>
-                  </div>
-                  <div class="grid-item-2">
-                     <input type="text" name="victim_name" id="victim_name" class="input-tag">
-                  </div>
-                  <div class="grid-item-2">
-                      <label for="criminal_name">Введите имя преступника:</label>
-                  </div>
-                  <div class="grid-item-2">
-                      <input type="text" name="criminal_name" id="criminal_name" class="input-tag">
-                  </div>
-                  <div class="grid-item-2">
-                      <label for="placeofcrime">Введите место преступления:</label>
-                  </div>
-                  <div class="grid-item-2">
-                    <input type="text" name="placeofcrime" id="placeofcrime" class="input-tag">
-                  </div>
-                  <div class="grid-item-2">
-                      <label for="weapon">Введите используемое оружие:</label>
-                  </div>
-                  <div class="grid-item-2">
-                    <input type="text" name="weapon" id="weapon" class="input-tag">
-                  </div>
-                  <div class="grid-item-2">
-                      <label for="crimetime">Введите время преступления:</label>
-                  </div>
-                  <div class="grid-item-2">
-                    <input type="datetime-local" name="crimetime" id="crimetime" class="input-tag">
-                  </div>
-                  <div class="grid-item-2">
-                      <label for="typecrime">Выберите тип преступления:</label>
-                  </div>
-                  <div class="grid-item-2">
-                    <select name="typecrime" id="typecrime" class="input-tag">
-                        <option th:each="typecrime : ${T(ru.itmo.PreCrime.model.CrimeType).values()}"
-                                th:text="${typecrime.displayText}"
-                                th:value="${typecrime}">
-                        </option>
-                      </select>
-                  </div>
-                  <div class="grid-item-2 merged">
-                      <input id="submit" type="submit" value="Submit" class="but-sub"/>
-                  </div>
-                </div>
-
-
-
-
-
-
-
-          </div>
-          <div class="u-section-1 u-align-center">
-
-
-
-                <div class="grid-container-2">
-                  <div class="grid-item-2">
-                     <label for="victim_name">Введите имя жертвы:</label>
-                  </div>
-                  <div class="grid-item-2">
-                     <input type="text" name="victim_name" id="victim_name" class="input-tag">
-                  </div>
-                  <div class="grid-item-2">
-                      <label for="criminal_name">Введите имя преступника:</label>
-                  </div>
-                  <div class="grid-item-2">
-                      <input type="text" name="criminal_name" id="criminal_name" class="input-tag">
-                  </div>
-                  <div class="grid-item-2">
-                      <label for="placeofcrime">Введите место преступления:</label>
-                  </div>
-                  <div class="grid-item-2">
-                    <input type="text" name="placeofcrime" id="placeofcrime" class="input-tag">
-                  </div>
-                  <div class="grid-item-2">
-                      <label for="weapon">Введите используемое оружие:</label>
-                  </div>
-                  <div class="grid-item-2">
-                    <input type="text" name="weapon" id="weapon" class="input-tag">
-                  </div>
-                  <div class="grid-item-2">
-                      <label for="crimetime">Введите время преступления:</label>
-                  </div>
-                  <div class="grid-item-2">
-                    <input type="datetime-local" name="crimetime" id="crimetime" class="input-tag">
-                  </div>
-                  <div class="grid-item-2">
-                      <label for="typecrime">Выберите тип преступления:</label>
-                  </div>
-                  <div class="grid-item-2">
-                    <select name="typecrime" id="typecrime" class="input-tag">
-                        <option th:each="typecrime : ${T(ru.itmo.PreCrime.model.CrimeType).values()}"
-                                th:text="${typecrime.displayText}"
-                                th:value="${typecrime}">
-                        </option>
-                      </select>
-                  </div>
-                  <div class="grid-item-2 merged">
-                      <input id="submit" type="submit" value="Submit" class="but-sub"/>
-                  </div>
-                </div>
-
-
-
-
-
-
-
-          </div>
-        </form>
+        <button onclick="openForm()" class = "but">Open card of precrime</button>
+        <a href="/cabinet" class = "but-log">Return</a>
       </div>
-    </div>
-    </div>
+
+
+
+
+
+      <div id="myModal" class="modal">
+        <div class="modal-content">
+          <span class="close" onclick="closeForm()">&times;</span>
+          <h2>Card of crime</h2>
+          <form id="create-card-form" th:object="${crimecard}">
+            <div class="u-section-1 u-align-center">
+  
+  
+  
+                  <div class="grid-container-2">
+                    <div class="grid-item-2">
+                       <label for="victim_name">Введите имя жертвы:</label>
+                    </div>
+                    <div class="grid-item-2">
+                       <input type="text" name="victim_name" id="victim_name" class="input-tag">
+                    </div>
+                    <div class="grid-item-2">
+                        <label for="criminal_name">Введите имя преступника:</label>
+                    </div>
+                    <div class="grid-item-2">
+                        <input type="text" name="criminal_name" id="criminal_name" class="input-tag">
+                    </div>
+                    <div class="grid-item-2">
+                        <label for="placeofcrime">Введите место преступления:</label>
+                    </div>
+                    <div class="grid-item-2">
+                      <input type="text" name="placeofcrime" id="placeofcrime" class="input-tag">
+                    </div>
+                    <div class="grid-item-2">
+                        <label for="weapon">Введите используемое оружие:</label>
+                    </div>
+                    <div class="grid-item-2">
+                      <input type="text" name="weapon" id="weapon" class="input-tag">
+                    </div>
+                    <div class="grid-item-2">
+                        <label for="crimetime">Введите время преступления:</label>
+                    </div>
+                    <div class="grid-item-2">
+                      <input type="datetime-local" name="crimetime" id="crimetime" class="input-tag">
+                    </div>
+                    <div class="grid-item-2">
+                        <label for="typecrime">Выберите тип преступления:</label>
+                    </div>
+                    <div class="grid-item-2">
+                      <select name="typecrime" id="typecrime" class="input-tag">
+                          <option th:each="typecrime : ${T(ru.itmo.PreCrime.model.CrimeType).values()}"
+                                  th:text="${typecrime.displayText}"
+                                  th:value="${typecrime}">
+                          </option>
+                        </select>
+                    </div>
+                    <div class="grid-item-2 merged">
+                        <input id="submit" type="submit" value="Submit" class="but-sub"/>
+                    </div>
+                  </div>
+  
+  
+  
+  
+  
+  
+  
+            </div>
+          </form>
+        </div>
+      </div>
     </body>
 </html>
