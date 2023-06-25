@@ -2,17 +2,71 @@
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
     <title>Card Details</title>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <meta charSet="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link th:href="@{/css/cards.css}" rel="stylesheet" />
+    <link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css?family=Open+Sans:400,400italic,600,600italic,700,700italic|Playfair+Display:400,700&subset=latin,cyrillic">
+    <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.4.0/css/font-awesome.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prefixfree/1.0.7/prefixfree.min.js"></script>
 </head>
 <body>
+
+<div class="widget">
     <h1>Card Details</h1>
+        <div class="table">
+            <div class="row">
+                <div class="cell">
+                    <label>Жертва: </label>
+                </div>
+                <div class="cell">
+                    <span th:text="${card.victim_name}"></span>
+                </div>
+            </div>
+                <div class="row">
+                    <div class="cell">
+                        <label>Преступник: </label>
+                    </div>
+                    <div class="cell">
+                        <span th:text="${card.criminal_name}"></span>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="cell">
+                        <label>Место преступления: </label>
+                    </div>
+                    <div class="cell">
+                        <span th:text="${card.placeofcrime}"></span>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="cell">
+                        <label>Орудие преступления: </label>
+                    </div>
+                    <div class="cell">
+                        <span th:text="${card.weapon}"></span>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="cell">
+                        <label>Время преступления: </label>
+                    </div>
+                    <div class="cell">
+                        <span th:text="${{card.crimetime}}"></span>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="cell">
+                        <label>Тип преступления: </label>
+                    </div>
+                    <div class="cell">
+                        <span th:text="${card.typecrime}"></span>
+                    </div>
+                </div>
+            </div>
+    <a href="/cardslist" class = "but-logout">Back to List</a>
 
-    <p>Жертва: <span th:text="${card.victim_name}"></span></p>
-    <p>Преступник: <span th:text="${card.criminal_name}"></span></p>
-    <p>Место преступления: <span th:text="${card.placeofcrime}"></span></p>
-    <p>Орудие преступления: <span th:text="${card.weapon}"></span></p>
-    <p>Время преступления: <span th:text="${{card.crimetime}}"></span></p>
-    <p>Тип преступления: <span th:text="${card.typecrime}"></span></p>
-
-    <a href="/cardslist">Back to List</a>
+</div>
 </body>
 </html>

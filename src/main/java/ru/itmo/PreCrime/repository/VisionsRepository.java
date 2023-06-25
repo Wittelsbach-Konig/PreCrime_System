@@ -12,5 +12,6 @@ import ru.itmo.PreCrime.model.Vision;
 @Repository
 public interface VisionsRepository extends JpaRepository<Vision, Long>{
     List<Vision> findByAcceptedFalse();
+    List<Vision> findByAcceptedTrue();
     Optional<Video> findFirstByAcceptedTrueOrderByIdDesc();
 }
