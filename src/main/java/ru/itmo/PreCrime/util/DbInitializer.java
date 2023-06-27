@@ -1,7 +1,9 @@
 package ru.itmo.PreCrime.util;
 
+import java.time.LocalDateTime;
 import java.util.Optional;
 
+import org.springframework.beans.CachedIntrospectionResults;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.context.event.ApplicationStartedEvent;
 import org.springframework.context.event.EventListener;
@@ -9,9 +11,8 @@ import org.springframework.data.domain.Example;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Component;
 
-import ru.itmo.PreCrime.model.Role;
-import ru.itmo.PreCrime.model.User;
-import ru.itmo.PreCrime.model.Vision;
+import ru.itmo.PreCrime.model.*;
+import ru.itmo.PreCrime.repository.CardsRepository;
 import ru.itmo.PreCrime.repository.UsersRepository;
 import ru.itmo.PreCrime.repository.VisionsRepository;
 
@@ -21,14 +22,17 @@ public class DbInitializer {
     private final UsersRepository userRepository;
     private final PasswordEncoder passwordEncoder;
     private final VisionsRepository visionsRepository;
+    private final CardsRepository cardsRepository;
 
     @Autowired
     public DbInitializer(UsersRepository userRepository,
                          PasswordEncoder passwordEncoder,
-                         VisionsRepository visionsRepository) {
+                         VisionsRepository visionsRepository,
+                         CardsRepository cardsRepository) {
         this.userRepository = userRepository;
         this.passwordEncoder = passwordEncoder;
         this.visionsRepository = visionsRepository;
+        this.cardsRepository = cardsRepository;
     }
 
     @EventListener(ApplicationStartedEvent.class)
@@ -80,12 +84,12 @@ public class DbInitializer {
     @EventListener(ApplicationStartedEvent.class)
     public void addVisions() {
         Vision vision1 = Vision.builder()
-        .videoUrl("https://www.youtube.com/watch?v=etZa36v63rc")
+        .videoUrl("https://drive.google.com/file/d/1cF3j_w4_LTManddaLsGZwPH8rSEUXkQE/preview")
         .accepted(false)
         .build();
 
         Vision vision2 = Vision.builder()
-        .videoUrl("https://www.youtube.com/watch?v=TR8moq11FnY&t=9s")
+        .videoUrl("https://drive.google.com/file/d/14R_QnKsCRXWdIzlWJoOD3Sq-D4mo4MZj/preview")
         .accepted(false)
         .build();
 
@@ -101,6 +105,41 @@ public class DbInitializer {
         }
         if (vision2Optional.isEmpty()) {
             visionsRepository.save(vision2);
+        }
+    }
+
+    @EventListener(ApplicationStartedEvent.class)
+    public void addCrimeCards() {
+        CrimeCard card1 = CrimeCard.builder()
+                .victim_name("Staruxa procentshica")
+                .criminal_name("Rodion Raskolnikov")
+                .placeofcrime("Saint-Petersburg")
+                .weapon("Topor")
+                .crimetime(LocalDateTime.of(1914, 12, 31, 12, 15))
+                .typecrime(CrimeType.INTENTIONAL)
+                .build();
+
+        CrimeCard card2 = CrimeCard.builder()
+                .victim_name("Andriy Bulba")
+                .criminal_name("Taras Bulba")
+                .placeofcrime("Zaporoj'e")
+                .weapon("Riffle")
+                .crimetime(LocalDateTime.of(1637, 3, 8, 14, 35))
+                .typecrime(CrimeType.INTENTIONAL)
+                .build();
+
+        Optional<CrimeCard> card1Optional = cardsRepository.findOne(
+                Example.of(card1)
+        );
+        Optional<CrimeCard> card2Optional = cardsRepository.findOne(
+                Example.of(card2)
+        );
+
+        if (card1Optional.isEmpty()) {
+            cardsRepository.save(card1);
+        }
+        if (card2Optional.isEmpty()) {
+            cardsRepository.save(card2);
         }
     }
 

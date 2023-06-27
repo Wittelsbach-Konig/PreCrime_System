@@ -114,19 +114,14 @@
           <h5 id="randomDateTime"></h5>
         </div>
         <div class="grid-item">
-          <a th:href="@{/visionslist}" class="but-grid"></a>
+          <a th:href="@{/visionslist}" class="but-grid">Show vision list</a>
         </div>
         <div class="grid-item"> </div>
-
 
       </div>
         <button onclick="openForm()" class = "but">Open card of precrime</button>
         <a href="/cabinet" class = "but-log">Return</a>
       </div>
-
-
-
-
 
       <div id="myModal" class="modal">
         <div class="modal-content">
@@ -134,42 +129,39 @@
           <h2>Card of crime</h2>
           <form id="create-card-form" th:object="${crimecard}">
             <div class="u-section-1 u-align-center">
-  
-  
-  
                   <div class="grid-container-2">
                     <div class="grid-item-2">
-                       <label for="victim_name">Введите имя жертвы:</label>
+                       <label for="victim_name">Type victim name:</label>
                     </div>
                     <div class="grid-item-2">
                        <input type="text" name="victim_name" id="victim_name" class="input-tag">
                     </div>
                     <div class="grid-item-2">
-                        <label for="criminal_name">Введите имя преступника:</label>
+                        <label for="criminal_name">Type criminal name:</label>
                     </div>
                     <div class="grid-item-2">
                         <input type="text" name="criminal_name" id="criminal_name" class="input-tag">
                     </div>
                     <div class="grid-item-2">
-                        <label for="placeofcrime">Введите место преступления:</label>
+                        <label for="placeofcrime">Type place of crime:</label>
                     </div>
                     <div class="grid-item-2">
                       <input type="text" name="placeofcrime" id="placeofcrime" class="input-tag">
                     </div>
                     <div class="grid-item-2">
-                        <label for="weapon">Введите используемое оружие:</label>
+                        <label for="weapon">Type crime weapon:</label>
                     </div>
                     <div class="grid-item-2">
                       <input type="text" name="weapon" id="weapon" class="input-tag">
                     </div>
                     <div class="grid-item-2">
-                        <label for="crimetime">Введите время преступления:</label>
+                        <label for="crimetime">Type time of crime:</label>
                     </div>
                     <div class="grid-item-2">
                       <input type="datetime-local" name="crimetime" id="crimetime" class="input-tag">
                     </div>
                     <div class="grid-item-2">
-                        <label for="typecrime">Выберите тип преступления:</label>
+                        <label for="typecrime">Choose type of crime:</label>
                     </div>
                     <div class="grid-item-2">
                       <select name="typecrime" id="typecrime" class="input-tag">
@@ -183,13 +175,6 @@
                         <input id="submit" type="submit" value="Submit" class="but-sub"/>
                     </div>
                   </div>
-  
-  
-  
-  
-  
-  
-  
             </div>
           </form>
         </div>
