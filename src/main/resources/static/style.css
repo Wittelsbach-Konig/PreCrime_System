@@ -80,9 +80,9 @@ h2 {
 .rounded-rectangle {
     position: absolute;
     width: 409px;
-    height: 442px;
+    height: 500px;
     left: calc(50% - 409px/2 + 318.5px);
-    top: calc(50% - 442px/2 + 68px);
+    top: calc(50% - 462px/2 + 68px);
 
     background: #D9D9D9;
     border-radius: 5px;

@@ -9,8 +9,10 @@ ul {
     list-style: none;
 }
 a {
+    font-family: 'Playfair Display';
+    font-weight: normal;
     text-decoration: none;
-    outline: none;
+    font-size: 14px;
 }
 
 body {
@@ -236,7 +238,7 @@ aside {
 .grid-container {
     display: grid;
     margin-top: 4%;
-    grid-template-columns: auto 1fr 1fr;
+    grid-template-columns:1fr 1fr;
     grid-template-rows: repeat(4, auto);
     gap: 10px;
 }

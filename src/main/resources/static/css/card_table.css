@@ -119,11 +119,11 @@ aside {
 
 .but{
     display: block;
-    width: 30%;
+    width: 90%;
     height: 10%;
     border-radius: 5px;
     padding: 1.5%;
-    margin-left: 37%;
+    margin-left: 2%;
     margin-top: 1%;
     background: #ffffff;
     color: #000000;
@@ -251,15 +251,50 @@ aside {
 }
 
 .close {
-    color: #aaa;
+    color: #ffffff;
     float: right;
-    font-size: 28px;
+    font-size: 44px;
     font-weight: bold;
+    margin-left: 10%;
+    margin-bottom: 35%;
 }
 
 .close:hover,
 .close:focus {
-    color: black;
+    color: #aaaaaa;
     text-decoration: none;
     cursor: pointer;
+
+}
+
+.iframe-container {
+    margin-left: 8%;
+    margin-top: 4%;
+    padding: 4%;
+
+}
+
+iframe {
+    width: 700px; /* Укажите нужную ширину */
+    height: 400px; /* Укажите нужную высоту */
+}
+
+.modal-1 {
+    display: none;
+    position: fixed;
+    z-index: 1;
+    margin-left: 9%;
+    margin-top: 3%;
+    width: 80%;
+    height: 80%;
+    overflow: auto;
+    background-color: rgba(0, 0, 0, 0.5);
+}
+
+.modal-content-1 {
+    background-color: rgba(1, 1, 1, 0.5);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
 }

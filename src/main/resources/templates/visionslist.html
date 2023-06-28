@@ -39,7 +39,7 @@
 <!--                <td th:text="${vision.accepted}"></td>-->
                 <td th:if="${user.Role == TECHNIC}">
                     <form th:if="${user.Role == TECHNIC}" th:action="@{/visions/{id}/accept(id=${vision.id})}" th:method="post" style="display: inline;">
-                        <input type="submit" value="Approve">
+                        <input type="submit" class="but-logout" value="Approve">
                     </form>
                 </td>
                 <td th:if="${user.Role == TECHNIC}">
@@ -77,10 +77,13 @@
         }
     </script>
 <!-- Модальное окно для просмотра видео -->
-<div id="videoModal" class="modal">
-    <div class="modal-content">
+<div id="videoModal" class="modal-1">
+    <div class="modal-content-1">
+
+        <div class="iframe-container">
+        <iframe id="videoPlayer" src=""></iframe>
+    </div>
         <span class="close">&times;</span>
-        <iframe id="videoPlayer" width="560" height="315" src="" frameborder="0" allowfullscreen></iframe>
     </div>
 </div>
 </body>
